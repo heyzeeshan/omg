@@ -8,7 +8,6 @@
                 <form string="{{ model.name }}">
                     <sheet>
                         <group>
-                            <field name="name"/>
                             {% for field in model.fields %}
                             <field name="{{ field.name }}"/>
                             {% endfor %}
@@ -24,7 +23,6 @@
             <field name="model">{{ model.name.lower().replace(' ', '.') }}</field>
             <field name="arch" type="xml">
                 <tree string="{{ model.name }}">
-                    <field name="name"/>
                     {% for field in model.fields %}
                     <field name="{{ field.name }}"/>
                     {% endfor %}
