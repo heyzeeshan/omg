@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+{% for model in models %}
+access_{{ model.name.lower().replace('.', '_') }},access.{{ model.name.lower().replace(' ', '.') }},model_{{ model.name.lower().replace(' ', '_').replace('.', '_') }},base.group_user,1,1,1,1
+{% endfor %}

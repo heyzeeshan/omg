@@ -1,0 +1,52 @@
+<odoo>
+    <data>
+        {% for model in models %}
+        <!-- Form View -->
+        <record id="view_{{ model.name.lower().replace('.', '_') }}_form" model="ir.ui.view">
+            <field name="name">{{ model.name.lower().replace(' ', '.') }}.form</field>
+            <field name="model">{{ model.name.lower().replace(' ', '.') }}</field>
+            <field name="arch" type="xml">
+                <form string="{{ model.name }}">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            {% for field in model.fields %}
+                            <field name="{{ field.name }}"/>
+                            {% endfor %}
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Tree View -->
+        <record id="view_{{ model.name.lower().replace('.', '_') }}_tree" model="ir.ui.view">
+            <field name="name">{{ model.name.lower().replace(' ', '.') }}.tree</field>
+            <field name="model">{{ model.name.lower().replace(' ', '.') }}</field>
+            <field name="arch" type="xml">
+                <tree string="{{ model.name }}">
+                    <field name="name"/>
+                    {% for field in model.fields %}
+                    <field name="{{ field.name }}"/>
+                    {% endfor %}
+                </tree>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_{{ model.name.lower().replace('.', '_') }}" model="ir.actions.act_window">
+            <field name="name">{{ model.name }}</field>
+            <field name="res_model">{{ model.name.lower().replace(' ', '.') }}</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Menu -->
+        <menuitem id="menu_{{ model.name.lower().replace('.', '_') }}_root" name="{{ module_name }}" sequence="10"/>
+        <menuitem id="menu_{{ model.name.lower().replace('.', '_') }}_child"
+                  name="{{ model.name }}"
+                  parent="menu_{{ model.name.lower().replace('.', '_') }}_root"
+                  action="action_{{ model.name.lower().replace('.', '_') }}"
+                  sequence="10"/>
+        {% endfor %}
+    </data>
+</odoo>
