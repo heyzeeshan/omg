@@ -2,8 +2,11 @@ from setuptools import setup, find_packages
 
 setup(
     name='omg-cli',
-    version='0.1.3',
+    version='0.1.8',
     packages=find_packages(),
+    package_data={
+        'omg_cli': ['templates/*.j2'],
+    },
     include_package_data=True,
     install_requires=[
         'Jinja2',

@@ -25,7 +25,7 @@ The Odoo Module Generator (OMG) is a command-line interface (CLI) tool designed 
 You can install OMG directly from PyPI using pip:
 
 ```bash
-pip install omg-cli==0.1.3
+pip install omg-cli==0.1.8
 ```
 
 ## Usage
